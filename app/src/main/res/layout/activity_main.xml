@@ -314,6 +314,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonEqualsOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         </LinearLayout>

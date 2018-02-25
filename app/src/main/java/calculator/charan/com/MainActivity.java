@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.textView1);
         switch (view.getId()) {
             case R.id.buttonC:
-                if (displayValue.length() < 10 && displayValue.length()>=1) {
+                if (displayValue.length() <= 10 && displayValue.length()>=1) {
                     displayValue = displayValue.substring(0,displayValue.length()-1);
                     textView1.setText(displayValue);
                 }
@@ -143,7 +148,8 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.buttonDiv:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
-                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".")) {
+                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
+                        displayValue.length()>0) {
                     displayValue = displayValue + "/";
                     textView1.setText(displayValue);
                 }
@@ -151,7 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonMul:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
-                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".")) {
+                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
+                        displayValue.length()>0) {
                     displayValue = displayValue + "x";
                     textView1.setText(displayValue);
             }
@@ -159,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonMin:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
-                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".")) {
+                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
+                        displayValue.length()>0) {
                     displayValue = displayValue + "-";
                     textView1.setText(displayValue);
                 }
@@ -167,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonPlus:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
-                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".")) {
+                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
+                        displayValue.length()>0) {
                     displayValue = displayValue + "+";
                     textView1.setText(displayValue);
                 }
@@ -175,12 +184,40 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonDot:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
-                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".")) {
+                        !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
+                        displayValue.length()>0) {
                     displayValue = displayValue + ".";
                     textView1.setText(displayValue);
                 }
                 break;
         }
     }
+
+    public void buttonEqualsOperation(View view) {
+        TextView textView1 = findViewById(R.id.textView1);
+        double calculatedValue;
+        if (view.getId() == R.id.buttonEquals) {
+
+            if ( displayValue.equals("") || displayValue.charAt(displayValue.length() - 1) == 'x'
+                    || displayValue.charAt(displayValue.length() - 1) == '/'
+                    || displayValue.charAt(displayValue.length() - 1) == '-'
+                    || displayValue.charAt(displayValue.length() - 1) == '+'
+                    || displayValue.charAt(displayValue.length() - 1) == '.') {
+                Toast.makeText(getApplicationContext(), "Invalid Operation", Toast.LENGTH_SHORT).show();
+            }
+
+
+            }
+        }
+
+    public static boolean precedenceOf(char Operator1,char Operator2){
+        int Operator1_value = (Operator1=='+'||Operator1=='-')?1:2;
+        int Operator2_value = (Operator2=='+'||Operator2=='-')?1:2;
+        if(Operator1_value>=Operator2_value)
+            return true;
+        else
+            return false;
+    }
+
 
 }
