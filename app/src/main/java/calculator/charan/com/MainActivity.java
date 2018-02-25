@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -205,9 +208,86 @@ public class MainActivity extends AppCompatActivity {
                     || displayValue.charAt(displayValue.length() - 1) == '.') {
                 Toast.makeText(getApplicationContext(), "Invalid Operation", Toast.LENGTH_SHORT).show();
             }
+            else {
+                StringBuilder numbersBuilder = new StringBuilder();
+                StringBuilder symbolsBuilder = new StringBuilder();
 
 
+                Stack stack = new Stack();
+                Queue<Object> queue = new LinkedList<Object>();
+                Queue<Object> IterativeQueue = new LinkedList<Object>();
+
+                ArrayList arrayList = new ArrayList();
+
+                for (int i = 0; i < displayValue.length(); i++) {
+                    char ch = displayValue.charAt(i);
+                    if (Character.isDigit(ch) || ch == '.') {
+                        numbersBuilder.append(ch);
+
+                    } else {
+                        if (stack.isEmpty()) {
+                            symbolsBuilder.append(ch);
+                            stack.push(ch);
+                            queue.add(Double.parseDouble(numbersBuilder.toString()));
+                            numbersBuilder.setLength(0);
+                        } else {
+                            symbolsBuilder.append(ch);
+                            char Operand_In_Stack = (char) stack.pop();
+                            if (precedenceOf(Operand_In_Stack, ch)) {
+                                queue.add(Double.parseDouble(numbersBuilder.toString()));
+                                numbersBuilder.setLength(0);
+                                queue.add(Operand_In_Stack);
+                            } else {
+                                queue.add(Double.parseDouble(numbersBuilder.toString()));
+                                numbersBuilder.setLength(0);
+                                stack.push(Operand_In_Stack);
+                            }
+                            stack.push(ch);
+                        }
+
+                        symbolsBuilder.setLength(0);
+                    }
+                }
+                queue.add(Double.parseDouble(numbersBuilder.toString()));
+                while (!stack.isEmpty()) {
+                    queue.add(stack.pop());
+                }
+                System.out.println(stack);
+                System.out.println(queue);
+
+                //Shunting-Yard Algorithm Final Step
+                for (Object value : queue) {
+                    arrayList.add(value.toString());
+                }
+
+                //Iterate ArrayList and perform final Calculations
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i).toString().charAt(0) == '/') {
+                        Double input1 = Double.parseDouble(arrayList.get(i - 2).toString());
+                        Double input2 = Double.parseDouble(arrayList.get(i - 1).toString());
+                        Double output = input1 / input2;
+                        arrayList.set(i, output);
+                    } else if (arrayList.get(i).toString().charAt(0) == 'x') {
+                        Double input1 = Double.parseDouble(arrayList.get(i - 2).toString());
+                        Double input2 = Double.parseDouble(arrayList.get(i - 1).toString());
+                        Double output = input1 * input2;
+                        arrayList.set(i, output);
+                    } else if (arrayList.get(i).toString().charAt(0) == '+') {
+                        Double input1 = Double.parseDouble(arrayList.get(i - 2).toString());
+                        Double input2 = Double.parseDouble(arrayList.get(i - 1).toString());
+                        Double output = input1 + input2;
+                        arrayList.set(i, output);
+                    } else if (arrayList.get(i).toString().charAt(0) == '-') {
+                        Double input1 = Double.parseDouble(arrayList.get(i - 2).toString());
+                        Double input2 = Double.parseDouble(arrayList.get(i - 1).toString());
+                        Double output = input1 - input2;
+                        arrayList.set(i, output);
+                    }
+                }
+                displayValue = arrayList.get(arrayList.size() - 1).toString();
+                textView1.setText(displayValue);
             }
+        }
         }
 
     public static boolean precedenceOf(char Operator1,char Operator2){
