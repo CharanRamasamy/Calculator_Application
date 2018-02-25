@@ -87,6 +87,7 @@
             android:text="@string/Root"
             android:layout_toRightOf="@+id/buttonPlusOrMinus"
             android:textColor="@color/colorWhite"
+            android:onClick="buttonRootOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         <Button

@@ -2,7 +2,7 @@
     <string name="app_name">Calculator</string>
     <string name="AllClear">AC</string>
     <string name="Clear">C</string>
-    <string name="Root">Root</string>
+    <string name="Root">Sqrt</string>
     <string name="PlusOrMinus">+/-</string>
     <string name="Minus">-</string>
     <string name="Plus">+</string>

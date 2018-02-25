@@ -23,38 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button AC = findViewById(R.id.buttonAC);
-        Button Button0 = findViewById(R.id.button0);
-        Button Button1 = findViewById(R.id.button1);
-        Button Button2 = findViewById(R.id.button2);
-        Button Button3 = findViewById(R.id.button3);
-
-        Button Button4 = findViewById(R.id.button4);
-        Button Button5 = findViewById(R.id.button5);
-        Button Button6 = findViewById(R.id.button6);
-        Button Button7 = findViewById(R.id.button7);
-        Button Button8 = findViewById(R.id.button8);
-
-        Button Button9 = findViewById(R.id.button9);
-        Button ButtonC = findViewById(R.id.buttonC);
-        Button ButtonRoot = findViewById(R.id.buttonRoot);
-        Button ButtonPlus = findViewById(R.id.buttonPlus);
-        Button ButtonMul = findViewById(R.id.buttonMul);
-
-        Button ButtonPlusOrMinus = findViewById(R.id.buttonPlusOrMinus);
-        Button ButtonMin = findViewById(R.id.buttonMin);
-        Button ButtonEquals = findViewById(R.id.buttonEquals);
-        Button ButtonDot = findViewById(R.id.buttonDot);
-        Button ButtonDiv = findViewById(R.id.buttonDiv);
-
         TextView textView1 = findViewById(R.id.textView1);
         TextView textView2 = findViewById(R.id.textView2);
-}
+    }
 
+    //Any Button with the number on it will listen to this method then clicked
     public void buttonNumberOperation(View view) {
         TextView textView1 = findViewById(R.id.textView1);
         switch(view.getId()){
             case R.id.button1:
+                //The Length of the display value is restricted to 10 Characters as per requirement
                 if(displayValue.length()<10) {
                     displayValue = displayValue + "1";
                     textView1.setText(displayValue);
@@ -73,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     displayValue = displayValue + "3";
                     textView1.setText(displayValue);
                 }
-                    break;
+                break;
 
             case R.id.button4:
                 if(displayValue.length()<10) {
@@ -127,18 +105,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
+    //This Listener will listen to Clear and All Clear button
     public void buttonClearOperation(View view) {
         TextView textView1 = findViewById(R.id.textView1);
         switch (view.getId()) {
             case R.id.buttonC:
+                //Clear button clears the last character
                 if (displayValue.length() <= 10 && displayValue.length()>=1) {
                     displayValue = displayValue.substring(0,displayValue.length()-1);
                     textView1.setText(displayValue);
                 }
                 break;
-
+            //All Clear button resets the values entered before
             case R.id.buttonAC:
                 displayValue = "";
                 textView1.setText(R.string.Zero);
@@ -146,10 +124,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //The Division,Multiplication,Addition and Subtractions operaation listens to this listener
     public void buttonOperandOperation(View view){
         TextView textView1 = findViewById(R.id.textView1);
         switch (view.getId()) {
             case R.id.buttonDiv:
+                //The Validations are done in such a way that no two operands can repeat consequently
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
                         !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
                         displayValue.length()>0) {
@@ -164,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         displayValue.length()>0) {
                     displayValue = displayValue + "x";
                     textView1.setText(displayValue);
-            }
-            break;
+                }
+                break;
 
             case R.id.buttonMin:
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
@@ -186,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonDot:
+                //Validation for Dot Characters which should not follow the Operation Symbols
                 if (displayValue.length() < 10 && !displayValue.endsWith("/") && !displayValue.endsWith("x") &&
                         !displayValue.endsWith("+") && !displayValue.endsWith("-") && !displayValue.endsWith(".") &&
                         displayValue.length()>0) {
@@ -196,9 +177,37 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Square root operations
+    public void buttonRootOperation(View view){
+        TextView textView1 = findViewById(R.id.textView1);
+        if(view.getId() == R.id.buttonRoot){
+            if(displayValue.indexOf('+') >= 0 || displayValue.indexOf('-') >= 0 || displayValue.indexOf('x') >= 0
+                    || displayValue.indexOf('/')>=0) {
+                Toast.makeText(getApplicationContext(), "Invalid Operation", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Double value = Double.parseDouble(displayValue);
+                Double sqrt = Math.sqrt(value);
+                displayValue = sqrt.toString();
+
+                if(displayValue.contains("."))
+                {
+                    if(displayValue.matches("(.)*.0"))
+                    {
+                        displayValue = displayValue.substring(0,displayValue.indexOf('.'));
+                    }
+                }
+                textView1.setText(displayValue);
+            }
+        }
+    }
+
+    //This Listener is invoked when the Equal button is clicked
+    //This is where the calculation happens according to precedence
     public void buttonEqualsOperation(View view) {
         TextView textView1 = findViewById(R.id.textView1);
         double calculatedValue;
+
         if (view.getId() == R.id.buttonEquals) {
 
             if ( displayValue.equals("") || displayValue.charAt(displayValue.length() - 1) == 'x'
@@ -209,13 +218,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Invalid Operation", Toast.LENGTH_SHORT).show();
             }
             else {
+                //Shunting-Yard algorithm is the concept used here for the calculation to be done with the precedence operators
                 StringBuilder numbersBuilder = new StringBuilder();
                 StringBuilder symbolsBuilder = new StringBuilder();
 
-
                 Stack stack = new Stack();
                 Queue<Object> queue = new LinkedList<Object>();
-                Queue<Object> IterativeQueue = new LinkedList<Object>();
 
                 ArrayList arrayList = new ArrayList();
 
@@ -225,14 +233,17 @@ public class MainActivity extends AppCompatActivity {
                         numbersBuilder.append(ch);
 
                     } else {
+                        //Operators are moved to the stack
                         if (stack.isEmpty()) {
                             symbolsBuilder.append(ch);
                             stack.push(ch);
+                            //Operands are moved to the Queue
                             queue.add(Double.parseDouble(numbersBuilder.toString()));
                             numbersBuilder.setLength(0);
                         } else {
                             symbolsBuilder.append(ch);
                             char Operand_In_Stack = (char) stack.pop();
+                            //Operators leaves the stack to the queue by comparing with the last in operator in the stack
                             if (precedenceOf(Operand_In_Stack, ch)) {
                                 queue.add(Double.parseDouble(numbersBuilder.toString()));
                                 numbersBuilder.setLength(0);
@@ -285,11 +296,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 displayValue = arrayList.get(arrayList.size() - 1).toString();
+                if(displayValue.contains("."))
+                {
+                    if(displayValue.matches("(.)*.0"))
+                    {
+                        displayValue = displayValue.substring(0,displayValue.indexOf('.'));
+                    }
+                }
                 textView1.setText(displayValue);
             }
         }
-        }
+    }
 
+    //This is the precedence Operation used by the Algorithm in the previous steps
     public static boolean precedenceOf(char Operator1,char Operator2){
         int Operator1_value = (Operator1=='+'||Operator1=='-')?1:2;
         int Operator2_value = (Operator2=='+'||Operator2=='-')?1:2;
@@ -301,3 +320,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
