@@ -10,9 +10,12 @@
     <LinearLayout
         android:id="@+id/LinearLayoutDisplay1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Zero"
@@ -27,9 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LinearLayoutDisplay1"
-        >
+        android:orientation="vertical"
+        android:layout_weight="1">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="35dip"
@@ -40,11 +44,9 @@
     <LinearLayout
         android:id="@+id/LinearLayoutButton"
         android:orientation="vertical"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="50"
         android:layout_below="@+id/LinearLayoutDisplay2"
         android:background="@color/colorGrey">
         
@@ -63,6 +65,7 @@
             android:text="@string/AllClear"
             android:textColor="@color/colorWhite"
             android:textSize="19dp"
+            android:onClick="buttonClearOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         <Button
@@ -95,6 +98,7 @@
             android:layout_alignParentEnd="true"
             android:textColor="@color/colorWhite"
             android:textSize="19dp"
+            android:onClick="buttonOperandOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         </LinearLayout>
@@ -114,6 +118,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -125,6 +130,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -136,6 +142,7 @@
                 android:text="@string/Nine"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -147,6 +154,7 @@
                 android:layout_toRightOf="@id/button9"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         </LinearLayout>
@@ -166,6 +174,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
             <Button
                 android:id="@+id/button5"
@@ -176,6 +185,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
             <Button
                 android:id="@+id/button6"
@@ -186,6 +196,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -197,6 +208,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
         </LinearLayout>
 
@@ -215,6 +227,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
             <Button
                 android:id="@+id/button2"
@@ -225,6 +238,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
             <Button
                 android:id="@+id/button3"
@@ -235,6 +249,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -245,6 +260,7 @@
                 android:text="@string/Plus"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
         </LinearLayout>
@@ -264,6 +280,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonClearOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
@@ -275,6 +292,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
             <Button
                 android:id="@+id/buttonDot"
@@ -285,6 +303,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:textSize="19dp"
+                android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
             <Button
