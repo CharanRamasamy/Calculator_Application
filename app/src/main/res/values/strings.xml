@@ -20,4 +20,6 @@
     <string name="Zero">0</string>
     <string name="Equals">=</string>
     <string name="Dot">.</string>
+    <string name="MulUnicode">\u00D7</string>
+    <string name="RootUnicode">\u221A</string>
 </resources>

@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Zero"
         android:textAlignment="center"
-        android:textSize="48dip"
+        android:textSize="75dip"
         android:layout_marginEnd="5dp"
         android:maxLength="10"/>
     </LinearLayout>
@@ -36,7 +36,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="35dip"
+        android:textSize="70dip"
         android:textAlignment="textEnd"
         android:layout_marginEnd="5dp" />
     </LinearLayout>
@@ -48,7 +48,7 @@
         android:layout_height="match_parent"
         android:layout_weight="50"
         android:layout_below="@+id/LinearLayoutDisplay2"
-        android:background="@color/colorGrey">
+        android:background="@color/colorSkyBlue">
         
         <LinearLayout
             android:id="@+id/LinearLayout1"
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/AllClear"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="19dp"
             android:onClick="buttonClearOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:text="@string/PlusOrMinus"
             android:layout_toRightOf="@+id/buttonAC"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="19dp"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
@@ -84,9 +84,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/Root"
+            android:text="@string/RootUnicode"
             android:layout_toRightOf="@+id/buttonPlusOrMinus"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
             android:onClick="buttonRootOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
 
@@ -97,7 +98,7 @@
             android:layout_weight="1"
             android:text="@string/Divide"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="19dp"
             android:onClick="buttonOperandOperation"
             style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -117,7 +118,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/Seven"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -129,7 +130,7 @@
                 android:text="@string/Eight"
                 android:layout_toRightOf="@+id/button7"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -141,7 +142,7 @@
                 android:layout_toRightOf="@+id/button8"
                 android:layout_weight="1"
                 android:text="@string/Nine"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -150,10 +151,10 @@
                 android:id="@+id/buttonMul"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/Multiply"
+                android:text="@string/MulUnicode"
                 android:layout_weight="1"
                 android:layout_toRightOf="@id/button9"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -173,7 +174,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/Four"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -184,7 +185,7 @@
                 android:text="@string/Five"
                 android:layout_toRightOf="@+id/button4"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -195,7 +196,7 @@
                 android:text="@string/Six"
                 android:layout_toRightOf="@+id/button5"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -207,7 +208,7 @@
                 android:text="@string/Minus"
                 android:layout_below="@+id/buttonMul"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -226,7 +227,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/One"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -237,7 +238,7 @@
                 android:text="@string/Two"
                 android:layout_toRightOf="@+id/button1"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -248,7 +249,7 @@
                 android:text="@string/Three"
                 android:layout_toRightOf="@+id/button2"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -259,7 +260,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/Plus"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -279,7 +280,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/Clear"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonClearOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -291,7 +292,7 @@
                 android:text="@string/Zero"
                 android:layout_toRightOf="@+id/buttonC"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonNumberOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -302,7 +303,7 @@
                 android:text="@string/Dot"
                 android:layout_toRightOf="@+id/button0"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonOperandOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
@@ -313,7 +314,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/Equals"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="19dp"
                 android:onClick="buttonEqualsOperation"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
